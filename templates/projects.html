@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Projects | {{ name }}{% endblock %}
+
+{% block content %}
+<section class="section page">
+    <h1>Projects</h1>
+    <p class="measure">Machine learning and data projects from my coursework. Swipe or use the arrows to browse.</p>
+    {% with full=true %}{% include "_carousel.html" %}{% endwith %}
+    {% if profile.github %}<p class="center-note"><a class="btn ghost" href="{{ profile.github }}" target="_blank" rel="noopener">More on GitHub</a></p>{% endif %}
+</section>
+{% endblock %}

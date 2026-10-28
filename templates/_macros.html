@@ -1,0 +1,13 @@
+{% macro ico(s) -%}
+{%- set u = icons.get(s) -%}
+{%- if u -%}
+<span class="sk-ico"><img src="{{ u }}" alt="" loading="lazy" data-n="{{ s[:2] }}" onerror="var n=this.dataset.n,p=this.parentNode;p.classList.add('fb');p.textContent=n"></span>
+{%- else -%}
+<span class="sk-ico fb">{{ s[:2] }}</span>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro soc(k) -%}
+{%- set m = {'linkedin': '0A66C2', 'instagram': 'E4405F', 'whatsapp': '25D366', 'gmail': 'EA4335', 'github': '181717'} -%}
+<span class="sk-ico"><img src="https://cdn.simpleicons.org/{{ k }}/{{ m[k] }}" alt="" onerror="this.remove()"></span>
+{%- endmacro %}

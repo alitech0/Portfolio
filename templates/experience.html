@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_macros.html" import ico with context %}
+{% block title %}Experience | {{ name }}{% endblock %}
+
+{% block content %}
+<section class="section page center">
+    <h1>Experience</h1>
+    <ol class="tl">
+        {% for e in experience_items %}
+        <li>
+            <div class="tl-card">
+                <span class="when">{{ e.when }}</span>
+                <h3>{{ e.title }}</h3>
+                <p class="org">{{ e.org }}</p>
+                <p class="place">{{ e.place }}</p>
+                {% if e.skills %}<ul class="stack tags">{% for s in e.skills %}<li>{{ ico(s) }}{{ s }}</li>{% endfor %}</ul>{% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
+</section>
+{% endblock %}

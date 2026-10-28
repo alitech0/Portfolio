@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% from "_macros.html" import ico, soc with context %}
+
+{% block content %}
+
+<!-- Landing / hero -->
+<section class="hero" id="top">
+    <div class="hero-text">
+        <p class="hello">Hi, I'm</p>
+        <h1>{{ name }}</h1>
+        <p class="role"><span id="typed" data-roles='{{ profile.roles | tojson }}'>{{ profile.role }}</span><span class="caret"></span></p>
+        <p class="lead">{{ profile.tagline }}</p>
+        <div class="btn-row">
+            <a class="btn" href="{{ url_for('projects_page') }}">See my projects</a>
+            <a class="btn ghost" href="{{ url_for('contactme') }}">Contact me</a>
+        </div>
+    </div>
+    {% include "_photo.html" %}
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap"><div class="marquee" aria-label="Skills">
+    <div class="marquee-track">
+        {% for _ in range(2) %}
+        <ul>
+            {% for group, items in skills.items() %}{% for s in items %}
+            <li>{{ ico(s) }}{{ s }}</li>
+            {% endfor %}{% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+</div></div>
+
+<!-- Projects -->
+<section class="section" id="projects">
+    <h2>Projects</h2>
+    {% include "_carousel.html" %}
+    <p class="center-note"><a class="text-link" href="{{ url_for('projects_page') }}">All projects</a></p>
+</section>
+
+<!-- Experience preview -->
+<section class="section alt center" id="experience-preview">
+    <h2>Experience</h2>
+    <ol class="tl">
+        {% for e in experience_items %}
+        <li>
+            <div class="tl-card">
+                <span class="when">{{ e.when }}</span>
+                <h3>{{ e.title }}</h3>
+                <p class="org">{{ e.org }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
+    <p class="center-note"><a class="text-link" href="{{ url_for('experience') }}">Experience</a> &nbsp;&middot;&nbsp; <a class="text-link" href="{{ url_for('education') }}">Education</a></p>
+</section>
+
+<!-- Contact CTA -->
+<section class="section cta">
+    <h2>Have a project or an opportunity?</h2>
+    <p class="measure">Send a message and I'll reply as soon as I can.</p>
+    <a class="btn" href="{{ url_for('contactme') }}">Send a message</a>
+</section>
+
+{% endblock %}

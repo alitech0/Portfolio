@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "_macros.html" import ico, soc with context %}
+{% block title %}About | {{ name }}{% endblock %}
+
+{% block content %}
+<section class="section page">
+    <div class="about-grid">
+        <div>
+            <h1>About me</h1>
+            <p class="measure">I'm {{ profile.full_name }}, an AI engineer based in {{ profile.location }}. I'm currently an AI engineering intern at NETSOL Technologies and studying Computer Science at the Virtual University of Pakistan.</p>
+            <p class="measure">I like taking machine learning from a notebook to something people can use: Pandas, NumPy and SQL for data, scikit-learn for models, FastAPI and Flask for APIs, Swagger and Postman for documenting and testing them, Docker for packaging and MLflow for tracking experiments.</p>
+            <div class="btn-row">
+                <a class="btn" href="{{ url_for('experience') }}">See my experience</a>
+                <a class="btn ghost" href="{{ url_for('contactme') }}">Contact me</a>
+            </div>
+        </div>
+        {% include "_photo.html" %}
+    </div>
+
+    <h2 class="after-grid">What I work with</h2>
+    <div class="group-grid">
+        {% for group, items in skills.items() %}
+        <div class="group">
+            <h3>{{ group }}</h3>
+            <ul class="stack">{% for s in items %}<li>{{ ico(s) }}{{ s }}</li>{% endfor %}</ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
